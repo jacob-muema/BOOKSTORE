@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Bookstore</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Virtual Bookstore</h1>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="fetchData('most_expensive')">Most Expensive Book</a>
+                <a href="#" onclick="fetchData('most_popular')">Most Popular Books in Each City</a>
+                <a href="#" onclick="fetchData('most_bought')">Most Bought Book</a>
+                <a href="#" onclick="fetchData('least_preferred')">Least Preferred Book</a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Result:</h2>
+        <div id="result">
+            <!-- Placeholder for fetched data -->
+        </div>
+    </div>
+
+    <script>
+        function fetchData(queryId) {
+            fetch(`getData.php?queryId=${queryId}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('result').innerHTML = data;
+                });
+        }
+    </script>
+</body>
+</html>
